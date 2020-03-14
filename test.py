@@ -2,25 +2,25 @@
 # -*- coding: utf-8 -*-
 # @Time  : 2020/3/11 10:20
 # @Author: Jtyoui@qq.com
-from pyunit_gof import IObserver, IObservable, Singleton
+from pyunit_gof import IObserver, IObservable, Singleton, IStated, IState
 
 
 def test_observer():
     class WaterHeater(IObservable):
 
         def __init__(self):
-            self.__observers = []
+            super().__init__()
             self.temperature = 0
             self.message = []
 
         def subscribe(self, observer):
-            self.__observers.append(observer)
+            self.observers.append(observer)
 
         def unsubscribe(self, observer):
-            self.__observers.remove(observer)
+            self.observers.remove(observer)
 
         def notify(self, *args, **kwargs):
-            for o in self.__observers:
+            for o in self.observers:
                 o.notify(self, *args, **kwargs)
 
         def set_temperature(self, temperature):
@@ -90,6 +90,51 @@ def test_single():
     print(PersonOther)
 
 
+def test_state():
+    class SolidWater(IState):
+        def behavior(self, *args, **kwargs):
+            return '我是固态'
+
+    class LiquidWater(IState):
+        def behavior(self, *args, **kwargs):
+            return '我是液态'
+
+    class GaseousWater(IState):
+        def behavior(self, *args, **kwargs):
+            return '我是气态'
+
+    class Water(IStated):
+        """根据温度不同，实现不同的水的形态"""
+
+        def __init__(self, state: IState, temperature):
+            super().__init__(state)
+            self.temperature = temperature
+
+        def set_state(self, state: IState):
+            self.state = state  # 改变状态
+            return state.behavior(self)  # 调用具体的状态方法
+
+        def start_state(self, temperature):
+            print('改变前是：', self.temperature, self.state.behavior())
+            if temperature <= 0:
+                value = self.set_state(SolidWater())
+            elif 0 < temperature <= 100:
+                value = self.set_state(LiquidWater())
+            else:
+                value = self.set_state(GaseousWater())
+            print('改变后是', temperature, value)
+            self.temperature = temperature
+
+        def rise_temperature(self, temperature):
+            self.start_state(self.temperature + temperature)
+
+    water = Water(SolidWater(), -10)
+    water.rise_temperature(20)
+    water.rise_temperature(80)
+    water.rise_temperature(20)
+
+
 if __name__ == '__main__':
     # test_observer()
-    test_single()
+    # test_single()
+    test_state()

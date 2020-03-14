@@ -10,12 +10,27 @@
 from abc import ABCMeta, abstractmethod
 
 
-class IObservable(metaclass=ABCMeta):
-    __doc__ = """可观察者对象"""
-    __slots__ = []
+class IObserver(metaclass=ABCMeta):
+    __doc__ = """观察者的抽象类,具体实现"""
 
     @abstractmethod
-    def subscribe(self, observer):
+    def notify(self, observable, *args, **kwargs):
+        """通知观察者对象
+
+        :param observable: 观察者具体的实现方法
+        """
+        pass
+
+
+class IObservable(metaclass=ABCMeta):
+    __doc__ = """可观察者对象"""
+
+    @abstractmethod
+    def __init__(self):
+        self.observers = []
+
+    @abstractmethod
+    def subscribe(self, observer: IObserver):
         """订阅观察者
 
         :param observer: 观察者对象。是一个class对象
@@ -23,7 +38,7 @@ class IObservable(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def unsubscribe(self, observer):
+    def unsubscribe(self, observer: IObserver):
         """退订观察者
 
         :param observer: 观察者对象。是一个class对象
@@ -36,17 +51,5 @@ class IObservable(metaclass=ABCMeta):
 
         >>> for o in self.observers: pass
 
-        """
-        pass
-
-
-class IObserver(metaclass=ABCMeta):
-    __doc__ = """观察者的抽象类,具体实现"""
-
-    @abstractmethod
-    def notify(self, observable, *args, **kwargs):
-        """通知观察者对象
-
-        :param observable: 观察者具体的实现方法
         """
         pass
