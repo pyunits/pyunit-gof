@@ -4,7 +4,8 @@
 # @Author: Jtyoui@qq.com
 from .observer import IObservable, IObserver
 from .singleton import Singleton
-from .state import IState, IStated
+from .state1 import IState1, IStated
+from .state2 import IState2, ContextSate
 
 __version__ = '2020.3.11'
 __author__ = 'Jtyoui'

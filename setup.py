@@ -30,5 +30,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    zip_safe=True,
+    zip_safe=False,
 )

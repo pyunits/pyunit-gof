@@ -5,7 +5,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class IState(metaclass=ABCMeta):
+class IState1(metaclass=ABCMeta):
 
     @abstractmethod
     def behavior(self, *args, **kwargs):
@@ -16,11 +16,11 @@ class IState(metaclass=ABCMeta):
 class IStated(metaclass=ABCMeta):
 
     @abstractmethod
-    def __init__(self, state: IState):
+    def __init__(self, state: IState1):
         self.state = state
 
     @abstractmethod
-    def set_state(self, state: IState):
+    def set_state(self, state: IState1):
         """改变不同的状态类,去实现不同的功能
 
         self.state = state

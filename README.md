@@ -1,7 +1,7 @@
 # **PyUnit-GOF** [![](https://gitee.com/tyoui/logo/raw/master/logo/photolog.png)][1]
 
 ## 设计模式接口
-[![](https://img.shields.io/badge/Python-3.6-green.svg)](https://pypi.org/project/pyunit-gof/)
+[![](https://img.shields.io/badge/Python-3.7-green.svg)](https://pypi.org/project/pyunit-gof/)
 
 
 ## 安装
