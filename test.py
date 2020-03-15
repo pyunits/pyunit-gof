@@ -110,11 +110,7 @@ def test_state():
             super().__init__(state)
             self.temperature = temperature
 
-        def set_state(self, state: IState):
-            self.state = state  # 改变状态
-            return state.behavior(self)  # 调用具体的状态方法
-
-        def start_state(self, temperature):
+        def flag_state(self, temperature):
             print('改变前是：', self.temperature, self.state.behavior())
             if temperature <= 0:
                 value = self.set_state(SolidWater())
@@ -125,13 +121,16 @@ def test_state():
             print('改变后是', temperature, value)
             self.temperature = temperature
 
-        def rise_temperature(self, temperature):
-            self.start_state(self.temperature + temperature)
+        def behavior(self):
+            return self.state.behavior(self)  # 调用具体的状态方法
+
+        def set_state(self, state: IState):
+            self.state = state  # 改变状态
+            return self.behavior()
 
     water = Water(SolidWater(), -10)
-    water.rise_temperature(20)
-    water.rise_temperature(80)
-    water.rise_temperature(20)
+    water.flag_state(80)
+    water.flag_state(120)
 
 
 if __name__ == '__main__':

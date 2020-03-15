@@ -29,7 +29,7 @@ class IStated(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def start_state(self, *args, **kwargs):
+    def flag_state(self, *args, **kwargs):
         """根据不同的情况实现不同的状态类
 
         if flag==1:
@@ -37,4 +37,9 @@ class IStated(metaclass=ABCMeta):
         elif flag==2:
             self.set_state(IState)
         """
+        pass
+
+    @abstractmethod
+    def behavior(self, *args, **kwargs):
+        """具体的行为状态"""
         pass
