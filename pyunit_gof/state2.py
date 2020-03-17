@@ -13,7 +13,7 @@ class IState2(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def behavior(self, content, *args, **kwargs):
+    def behavior(self, context, *args, **kwargs):
         """具体的行为方法"""
         pass
 

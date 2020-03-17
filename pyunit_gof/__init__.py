@@ -6,6 +6,7 @@ from .observer import IObservable, IObserver
 from .singleton import Singleton
 from .state1 import IState1, IStated
 from .state2 import IState2, ContextSate
+from .mediator import IMediator, Mediator
 
 __version__ = '2020.3.11'
 __author__ = 'Jtyoui'

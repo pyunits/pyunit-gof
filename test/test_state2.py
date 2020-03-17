@@ -10,7 +10,7 @@ class SolidWater(IState2):
     def is_match(self, info, *args, **kwargs) -> bool:
         return info <= 0
 
-    def behavior(self, content, *args, **kwargs):
+    def behavior(self, context, *args, **kwargs):
         return '我是固态'
 
 
@@ -18,7 +18,7 @@ class LiquidWater(IState2):
     def is_match(self, info, **kwargs) -> bool:
         return 0 < info < 100
 
-    def behavior(self, content, *args, **kwargs):
+    def behavior(self, context, *args, **kwargs):
         return '我是液态'
 
 
@@ -26,7 +26,7 @@ class GaseousWater(IState2):
     def is_match(self, info, *args, **kwargs) -> bool:
         return 2000 > info >= 100
 
-    def behavior(self, content, *args, **kwargs):
+    def behavior(self, context, *args, **kwargs):
         return '我是气态'
 
 
@@ -34,7 +34,7 @@ class SuperGaseousWater(IState2):
     def is_match(self, info, *args, **kwargs) -> bool:
         return info >= 2000
 
-    def behavior(self, content, *args, **kwargs):
+    def behavior(self, context, *args, **kwargs):
         return '我是超气态'
 
 
