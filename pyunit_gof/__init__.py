@@ -8,6 +8,7 @@ from .state1 import IState1, IStated
 from .state2 import IState2, ContextSate
 from .mediator import IMediator, Mediator
 from .clone import Clone
+from .chain import Chain, IChain
 
 __version__ = '2020.3.11'
 __author__ = 'Jtyoui'
